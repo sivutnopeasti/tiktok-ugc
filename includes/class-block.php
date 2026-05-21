@@ -2,7 +2,7 @@
 /**
  * Gutenberg block registration.
  *
- * @package TikTokProfileEmbed
+ * @package InstagramProfileEmbed
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the TikTok Profile Embed block.
+ * Registers the Instagram Profile Embed block.
  */
-class TPE_Block {
+class IPE_Block {
 
 	/**
 	 * Register block and editor assets.
@@ -26,8 +26,8 @@ class TPE_Block {
 	 */
 	public static function register_block() {
 		wp_register_script(
-			'tpe-block-editor',
-			TPE_PLUGIN_URL . 'assets/js/block-editor.js',
+			'ipe-block-editor',
+			IPE_PLUGIN_URL . 'assets/js/block-editor.js',
 			array(
 				'wp-blocks',
 				'wp-element',
@@ -36,15 +36,15 @@ class TPE_Block {
 				'wp-i18n',
 				'wp-server-side-render',
 			),
-			TPE_VERSION,
+			IPE_VERSION,
 			true
 		);
 
 		register_block_type(
-			TPE_PLUGIN_DIR . 'blocks/tiktok-profile',
+			IPE_PLUGIN_DIR . 'blocks/instagram-profile',
 			array(
 				'render_callback' => array( __CLASS__, 'render' ),
-				'editor_script'   => 'tpe-block-editor',
+				'editor_script'   => 'ipe-block-editor',
 			)
 		);
 	}
@@ -56,7 +56,7 @@ class TPE_Block {
 	 * @return string
 	 */
 	public static function render( $attributes ) {
-		$settings = TPE_Settings::get_settings();
+		$settings = IPE_Settings::get_settings();
 		$username = isset( $attributes['username'] ) ? (string) $attributes['username'] : '';
 		$height   = isset( $attributes['height'] ) && $attributes['height'] !== ''
 			? (int) $attributes['height']
@@ -66,7 +66,7 @@ class TPE_Block {
 			return '';
 		}
 
-		return TPE_OEmbed_Client::render_profile(
+		return IPE_Embed_Renderer::render_profile(
 			$username,
 			array(
 				'height'      => $height,

@@ -6,12 +6,12 @@
 	const ServerSideRender = wp.serverSideRender;
 	const { __ } = wp.i18n;
 
-	registerBlockType( 'tiktok-profile-embed/profile', {
+	registerBlockType( 'instagram-profile-embed/profile', {
 		edit: function ( props ) {
 			const { attributes, setAttributes } = props;
 			const { username, height } = attributes;
 			const blockProps = useBlockProps( {
-				className: 'tpe-block-editor',
+				className: 'ipe-block-editor',
 			} );
 
 			const heightValue = height !== '' ? parseInt( height, 10 ) : 600;
@@ -24,17 +24,17 @@
 					null,
 					el(
 						PanelBody,
-						{ title: __( 'TikTok-asetukset', 'tiktok-profile-embed' ), initialOpen: true },
+						{ title: __( 'Instagram-asetukset', 'instagram-profile-embed' ), initialOpen: true },
 						el( TextControl, {
-							label: __( 'TikTok-käyttäjänimi', 'tiktok-profile-embed' ),
-							help: __( 'Ilman @-merkkiä, esim. sara_rai', 'tiktok-profile-embed' ),
+							label: __( 'Instagram-käyttäjänimi', 'instagram-profile-embed' ),
+							help: __( 'Ilman @-merkkiä, esim. sara_rai', 'instagram-profile-embed' ),
 							value: username,
 							onChange: function ( value ) {
 								setAttributes( { username: value } );
 							},
 						} ),
 						el( RangeControl, {
-							label: __( 'Korkeus (px)', 'tiktok-profile-embed' ),
+							label: __( 'Korkeus (px)', 'instagram-profile-embed' ),
 							value: heightValue,
 							onChange: function ( value ) {
 								setAttributes( { height: String( value ) } );
@@ -50,21 +50,21 @@
 					blockProps,
 					username
 						? el( ServerSideRender, {
-								block: 'tiktok-profile-embed/profile',
+								block: 'instagram-profile-embed/profile',
 								attributes: attributes,
 						  } )
 						: el(
 								Placeholder,
 								{
-									icon: 'video-alt3',
-									label: __( 'TikTok Profile Embed', 'tiktok-profile-embed' ),
+									icon: 'instagram',
+									label: __( 'Instagram Profile Embed', 'instagram-profile-embed' ),
 									instructions: __(
-										'Anna TikTok-käyttäjänimi sivupaneelista.',
-										'tiktok-profile-embed'
+										'Anna Instagram-käyttäjänimi sivupaneelista.',
+										'instagram-profile-embed'
 									),
 								},
 								el( TextControl, {
-									label: __( 'TikTok-käyttäjänimi', 'tiktok-profile-embed' ),
+									label: __( 'Instagram-käyttäjänimi', 'instagram-profile-embed' ),
 									value: username,
 									onChange: function ( value ) {
 										setAttributes( { username: value } );

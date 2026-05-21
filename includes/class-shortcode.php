@@ -2,7 +2,7 @@
 /**
  * Shortcode handler.
  *
- * @package TikTokProfileEmbed
+ * @package InstagramProfileEmbed
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,15 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers [tiktok_profile] shortcode.
+ * Registers [instagram_profile] shortcode.
  */
-class TPE_Shortcode {
+class IPE_Shortcode {
 
 	/**
 	 * Register shortcode.
 	 */
 	public static function register() {
-		add_shortcode( 'tiktok_profile', array( __CLASS__, 'render' ) );
+		add_shortcode( 'instagram_profile', array( __CLASS__, 'render' ) );
 	}
 
 	/**
@@ -34,13 +34,13 @@ class TPE_Shortcode {
 				'height'   => '',
 			),
 			$atts,
-			'tiktok_profile'
+			'instagram_profile'
 		);
 
-		$settings = TPE_Settings::get_settings();
+		$settings = IPE_Settings::get_settings();
 		$height   = $atts['height'] !== '' ? (int) $atts['height'] : (int) $settings['default_height'];
 
-		return TPE_OEmbed_Client::render_profile(
+		return IPE_Embed_Renderer::render_profile(
 			$atts['username'],
 			array(
 				'height'      => $height,

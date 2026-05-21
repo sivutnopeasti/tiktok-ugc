@@ -1,40 +1,25 @@
 (function () {
 	'use strict';
 
-	var embedScriptLoaded = false;
-
-	function loadEmbedScript(callback) {
-		if (embedScriptLoaded) {
-			if (callback) {
-				callback();
-			}
+	function activateIframe(container) {
+		var iframe = container.querySelector('.ipe-profile-embed__iframe');
+		if (!iframe || iframe.dataset.ipeLoaded === '1') {
 			return;
 		}
 
-		var script = document.createElement('script');
-		script.src = 'https://www.tiktok.com/embed.js';
-		script.async = true;
-		script.onload = function () {
-			embedScriptLoaded = true;
-			if (callback) {
-				callback();
-			}
-		};
-		document.body.appendChild(script);
-	}
-
-	function activateEmbed(container) {
-		if (container.dataset.tpeLoaded === '1') {
+		var src = iframe.getAttribute('data-ipe-src');
+		if (!src) {
 			return;
 		}
 
-		container.dataset.tpeLoaded = '1';
-		loadEmbedScript();
+		iframe.src = src;
+		iframe.dataset.ipeLoaded = '1';
+		container.dataset.ipeLoaded = '1';
 	}
 
 	function observeContainer(container) {
 		if (!('IntersectionObserver' in window)) {
-			activateEmbed(container);
+			activateIframe(container);
 			return;
 		}
 
@@ -42,7 +27,7 @@
 			function (entries) {
 				entries.forEach(function (entry) {
 					if (entry.isIntersecting) {
-						activateEmbed(entry.target);
+						activateIframe(entry.target);
 						observer.unobserve(entry.target);
 					}
 				});
@@ -56,8 +41,7 @@
 	}
 
 	document.addEventListener('DOMContentLoaded', function () {
-		var containers = document.querySelectorAll('.tpe-profile-embed--lazy');
-
+		var containers = document.querySelectorAll('.ipe-profile-embed--lazy');
 		containers.forEach(function (container) {
 			observeContainer(container);
 		});

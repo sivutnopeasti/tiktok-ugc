@@ -1,15 +1,12 @@
 <?php
 /**
- * Uninstall handler for TikTok Profile Embed.
+ * Uninstall handler.
  *
- * @package TikTokProfileEmbed
+ * @package InstagramProfileEmbed
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'includes/class-cache.php';
-
-delete_option( 'tpe_settings' );
-TPE_Cache::flush_all();
+delete_option( 'ipe_settings' );

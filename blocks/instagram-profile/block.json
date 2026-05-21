@@ -1,13 +1,13 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "tiktok-profile-embed/profile",
+  "name": "instagram-profile-embed/profile",
   "version": "1.0.0",
-  "title": "TikTok Profile Embed",
+  "title": "Instagram Profile Embed",
   "category": "embed",
-  "icon": "video-alt3",
-  "description": "Upottaa TikTok-käyttäjän profiilin ja videot.",
-  "textdomain": "tiktok-profile-embed",
+  "icon": "instagram",
+  "description": "Upottaa Instagram-käyttäjän profiilin.",
+  "textdomain": "instagram-profile-embed",
   "attributes": {
     "username": {
       "type": "string",
@@ -22,5 +22,5 @@
     "html": false,
     "align": ["wide", "full"]
   },
-  "editorScript": "tpe-block-editor"
+  "editorScript": "ipe-block-editor"
 }
