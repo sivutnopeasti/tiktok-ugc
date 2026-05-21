@@ -56,9 +56,18 @@ class TPE_OEmbed_Client {
 
 	/**
 	 * Mark that embed assets are needed on this page.
+	 *
+	 * Shortcodes and Elementor widgets render after wp_enqueue_scripts, so assets
+	 * are printed in the footer when an embed is first discovered.
 	 */
 	public static function mark_assets_needed() {
+		if ( self::$enqueue_assets ) {
+			return;
+		}
+
 		self::$enqueue_assets = true;
+
+		add_action( 'wp_footer', array( __CLASS__, 'print_frontend_assets' ), 5 );
 	}
 
 	/**
@@ -68,6 +77,27 @@ class TPE_OEmbed_Client {
 	 */
 	public static function should_enqueue_assets() {
 		return self::$enqueue_assets;
+	}
+
+	/**
+	 * Print frontend CSS and JS after the embed markup is rendered.
+	 */
+	public static function print_frontend_assets() {
+		if ( ! self::$enqueue_assets ) {
+			return;
+		}
+
+		$css_url = TPE_PLUGIN_URL . 'assets/css/frontend.css';
+		echo '<link rel="stylesheet" id="tpe-frontend-css" href="' . esc_url( $css_url ) . '?ver=' . esc_attr( TPE_VERSION ) . '" media="all" />' . "\n";
+
+		$settings = TPE_Settings::get_settings();
+
+		if ( ! empty( $settings['lazy_load'] ) ) {
+			$js_url = TPE_PLUGIN_URL . 'assets/js/lazy-load.js';
+			echo '<script src="' . esc_url( $js_url ) . '?ver=' . esc_attr( TPE_VERSION ) . '"></script>' . "\n";
+		} else {
+			echo '<script async src="https://www.tiktok.com/embed.js"></script>' . "\n";
+		}
 	}
 
 	/**
@@ -154,6 +184,7 @@ class TPE_OEmbed_Client {
 				'cite'            => true,
 				'data-unique-id'  => true,
 				'data-embed-from' => true,
+				'data-embed-type' => true,
 				'style'           => true,
 			),
 			'section'    => array(

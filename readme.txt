@@ -4,7 +4,7 @@ Tags: tiktok, embed, social media, oembed, profile
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,11 @@ Ei. Vain julkiset profiilit voidaan upottaa.
 Kyllä. TikTok-upotus lataa TikTokin skriptejä ja voi asettaa evästeitä. Harkitse evästebannerin ja suostumuslogiikan käyttöä sivustollasi.
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix: TikTok embed.js now loads after Elementor/shortcode render (footer)
+* Fix: Preserve data-embed-type attribute required for creator profile embeds
+* Fix: Clear stale embed cache automatically on plugin update
 
 = 1.0.0 =
 * Ensimmäinen julkaisu
