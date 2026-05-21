@@ -121,7 +121,7 @@ class IPE_Embed_Renderer {
 			'width'           => '100%',
 			'height'          => (string) $height,
 			'frameborder'     => '0',
-			'scrolling'       => 'no',
+			'scrolling'       => 'yes',
 			'allowtransparency' => 'true',
 			'title'           => sprintf(
 				/* translators: %s: Instagram username */

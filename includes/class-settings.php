@@ -31,7 +31,7 @@ class IPE_Settings {
 	 */
 	public static function get_defaults() {
 		return array(
-			'default_height' => 600,
+			'default_height' => 720,
 			'lazy_load'      => 0,
 		);
 	}
@@ -113,7 +113,7 @@ class IPE_Settings {
 		$input    = is_array( $input ) ? $input : array();
 
 		return array(
-			'default_height' => max( 200, min( 1200, (int) ( $input['default_height'] ?? $defaults['default_height'] ) ) ),
+			'default_height' => max( 200, min( 2400, (int) ( $input['default_height'] ?? $defaults['default_height'] ) ) ),
 			'lazy_load'      => empty( $input['lazy_load'] ) ? 0 : 1,
 		);
 	}
@@ -127,11 +127,14 @@ class IPE_Settings {
 		<input
 			type="number"
 			min="200"
-			max="1200"
+			max="2400"
 			name="<?php echo esc_attr( self::OPTION_KEY ); ?>[default_height]"
 			value="<?php echo esc_attr( (string) $settings['default_height'] ); ?>"
 			class="small-text"
 		/>
+		<p class="description">
+			<?php esc_html_e( 'Kiinteä korkeus. Upotuksen sisällä voi scrollata alaspäin nähdäksesi lisää julkaisuja.', 'instagram-profile-embed' ); ?>
+		</p>
 		<?php
 	}
 

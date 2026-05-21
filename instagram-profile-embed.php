@@ -3,7 +3,7 @@
  * Plugin Name:       Instagram Profile Embed
  * Plugin URI:        https://ugcsuomi.fi
  * Description:       Upottaa Instagram-käyttäjän profiilin shortcodella tai Gutenberg-lohkolla.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            UGC Suomi
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'IPE_VERSION', '1.0.0' );
+define( 'IPE_VERSION', '1.0.1' );
 define( 'IPE_PLUGIN_FILE', __FILE__ );
 define( 'IPE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'IPE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

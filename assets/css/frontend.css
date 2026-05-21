@@ -6,7 +6,7 @@
 }
 
 .ipe-profile-embed__inner {
-	min-height: var(--ipe-embed-height);
+	height: var(--ipe-embed-height);
 	overflow: hidden;
 	border-radius: 8px;
 	background: #fafafa;
@@ -16,9 +16,10 @@
 .ipe-profile-embed__iframe {
 	display: block;
 	width: 100%;
-	min-height: var(--ipe-embed-height);
+	height: var(--ipe-embed-height);
 	border: 0;
 	background: #fff;
+	overflow: auto;
 }
 
 .ipe-profile-embed--error {
