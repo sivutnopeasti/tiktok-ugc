@@ -1,0 +1,62 @@
+.tpe-profile-embed {
+	--tpe-embed-height: 600px;
+	width: 100%;
+	max-width: 100%;
+	margin: 1.5rem 0;
+}
+
+.tpe-profile-embed__inner {
+	min-height: var(--tpe-embed-height);
+	overflow: hidden;
+	border-radius: 8px;
+	background: #f8f8f8;
+}
+
+.tpe-profile-embed__inner blockquote.tiktok-embed {
+	margin: 0;
+	max-width: 100% !important;
+	min-width: 0 !important;
+}
+
+.tpe-profile-embed__inner iframe {
+	max-width: 100%;
+}
+
+.tpe-profile-embed--error {
+	padding: 1rem 1.25rem;
+	border: 1px solid #d63638;
+	border-radius: 6px;
+	background: #fcf0f1;
+	color: #8a1f1f;
+}
+
+.tpe-profile-embed--error p {
+	margin: 0;
+}
+
+.tpe-profile-embed--lazy .tpe-profile-embed__inner {
+	position: relative;
+}
+
+.tpe-profile-embed--lazy .tpe-profile-embed__inner::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, #f3f3f3 0%, #ececec 100%);
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.tpe-profile-embed--lazy[data-tpe-loaded='1'] .tpe-profile-embed__inner::before {
+	display: none;
+}
+
+.alignwide .tpe-profile-embed,
+.alignfull .tpe-profile-embed {
+	width: 100%;
+}
+
+.tpe-block-editor {
+	border: 1px dashed #c3c4c7;
+	padding: 0.5rem;
+}
